@@ -3,6 +3,8 @@ require("dotenv").config()
 const express=require('express');
 const app =express();
 const port=5500
+const cors=require('cors')
+app.use(cors())
 
 // db connection
 const dbConnection=require("./db/dbConfige")
@@ -17,12 +19,13 @@ app.use(express.json())
 app.use("/api/users",userRoutes)
 app.use("/api/questions",authMiddleware,questionRoute)
 
+
 // console.log(process.env.JWT_SECRET)
 
 
 async function start() {
     try{
-        const result=await dbConnection.execute("select 'test'")
+        // const result=await dbConnection.execute("select 'test'")
         await app.listen(port)
         console.log(`listening on ${port}`)
     }catch(err){

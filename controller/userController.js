@@ -84,6 +84,7 @@ async function login(req,res){
     return res.status(StatusCodes.OK).json({
       msg: "User logged in successfully",
       token: token,
+      username
     });
     
 
